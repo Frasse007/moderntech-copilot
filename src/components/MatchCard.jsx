@@ -15,6 +15,12 @@ export default function MatchCard({ match, onSelectOdds, isSelected, selectedOdd
     })
   }
 
+  // Helper to safely render flag icon class names (e.g., 'gb', 'es', 'us')
+  const getFlagClass = (countryCode) => {
+    if (!countryCode) return ''
+    return `fi fi-${countryCode.toLowerCase()}`
+  }
+
   return (
     <div className="match-card">
       <div className="match-header">
@@ -28,11 +34,11 @@ export default function MatchCard({ match, onSelectOdds, isSelected, selectedOdd
       <div className="match-teams">
         <div className="team">
           <span className="team-name">{match.homeTeam}</span>
-          <span className="team-flag">{match.homeFlag}</span>
+          <span className={`team-flag ${getFlagClass(match.homeFlag)}`} title={match.homeFlag}></span>
         </div>
         <div className="versus">vs</div>
         <div className="team">
-          <span className="team-flag">{match.awayFlag}</span>
+          <span className={`team-flag ${getFlagClass(match.awayFlag)}`} title={match.awayFlag}></span>
           <span className="team-name">{match.awayTeam}</span>
         </div>
       </div>

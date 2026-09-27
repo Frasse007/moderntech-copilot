@@ -76,3 +76,8 @@ mockMatches.js	12 sports fixtures	~95
 🏈 American Football (NFL)
 
 Each with realistic decimal odds (1.45 - 4.50 range).
+
+### PROMPT
+On the MatchCard.jsx component I want you to change the ISO Alpha-2 country codes to instead utilize this: https://flagicons.lipis.dev/ for obtaining the country flags to display on the cards. Here is the MatchCard.jsx: 
+
+### RESPONSE
