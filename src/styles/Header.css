@@ -49,17 +49,26 @@
 }
 
 .nav-link {
+  background: none;
+  border: none;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
+  cursor: pointer;
 }
 
 .nav-link:hover {
   color: var(--color-primary);
   background-color: rgba(59, 130, 246, 0.1);
+}
+
+.nav-link.active {
+  color: var(--color-primary);
+  background-color: rgba(59, 130, 246, 0.2);
+  font-weight: var(--font-weight-bold);
 }
 
 /* Profile Section */
