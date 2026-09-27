@@ -97,7 +97,7 @@ export default function App() {
       />
       
       <div className="app-layout">
-        <main className="main-content">
+        <main className={`main-content ${activeTab === 'help' ? 'full-width' : ''}`}>
           {activeTab === 'home' && (
             <>
               <MatchBoard 
@@ -143,13 +143,23 @@ export default function App() {
           {activeTab === 'help' && (
             <div className="tab-view help-section">
               <h2>Help & Support Center</h2>
-              <div className="help-card">
-                <h3>How do I place a bet?</h3>
-                <p>Click on any odds button (Home, Draw, or Away) on a match card to add it to your Bet Slip on the right side. Enter your stake amount and click "Place Bet".</p>
-              </div>
-              <div className="help-card">
-                <h3>How does the bankroll work?</h3>
-                <p>You start with a simulated bankroll of $1,000. Placing bets deducts your wager amount. Canceling a pending bet refunds the wager to your account balance.</p>
+              <div className="help-grid">
+                <div className="help-card">
+                  <h3>How do I place a bet?</h3>
+                  <p>Click on any odds button (Home, Draw, or Away) on a match card to add it to your Bet Slip on the right side. Enter your stake amount and click "Place Bet".</p>
+                </div>
+                <div className="help-card">
+                  <h3>How does the bankroll work?</h3>
+                  <p>You start with a simulated bankroll of $1,000. Placing bets deducts your wager amount. Canceling a pending bet refunds the wager to your account balance.</p>
+                </div>
+                <div className="help-card">
+                  <h3>Can I cancel an active bet?</h3>
+                  <p>Yes! In the "Active Bets" section on the Home tab, click the "Cancel Bet" button next to any pending wager to immediately refund the stake to your balance.</p>
+                </div>
+                <div className="help-card">
+                  <h3>How are odds calculated?</h3>
+                  <p>Odds reflect decimal payouts. A $10 wager placed at 2.50 odds yields a total potential payout of $25 ($15 profit + $10 returned wager).</p>
+                </div>
               </div>
             </div>
           )}
@@ -250,19 +260,21 @@ export default function App() {
           )}
         </main>
 
-        <aside className="sidebar">
-          <BetSlip
-            selectedOdds={selectedOdds}
-            bankroll={bankroll}
-            wager={betWager}
-            onWagerChange={setBetWager}
-            onPlaceBet={handlePlaceBet}
-            onClear={() => {
-              setSelectedOdds(null)
-              setBetWager('')
-            }}
-          />
-        </aside>
+        {activeTab !== 'help' && (
+          <aside className="sidebar">
+            <BetSlip
+              selectedOdds={selectedOdds}
+              bankroll={bankroll}
+              wager={betWager}
+              onWagerChange={setBetWager}
+              onPlaceBet={handlePlaceBet}
+              onClear={() => {
+                setSelectedOdds(null)
+                setBetWager('')
+              }}
+            />
+          </aside>
+        )}
       </div>
     </div>
   )

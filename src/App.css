@@ -148,6 +148,45 @@
   background-color: rgba(59, 130, 246, 0.2);
 }
 
+/* Full-Width Main Content Modifier */
+.main-content.full-width {
+  flex: 1;
+  max-width: 100%;
+}
+
+/* Help Section Grid Layout */
+.help-section {
+  max-width: 100%;
+}
+
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.help-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.help-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: #3b82f6;
+  font-size: 1.1rem;
+}
+
+.help-card p {
+  margin: 0;
+  color: #94a3b8;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .app-layout {
