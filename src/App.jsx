@@ -12,7 +12,18 @@ export default function App() {
   const [activeBets, setActiveBets] = useState([])
   const [betWager, setBetWager] = useState('')
   const [activeTab, setActiveTab] = useState('home')
-  const [selectedSport, setSelectedSport] = useState('All') // Category filter state
+  const [selectedSport, setSelectedSport] = useState('All')
+
+  // State for user profile details
+  const [profileData, setProfileData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    postalCode: ''
+  })
+  const [isSaved, setIsSaved] = useState(false)
 
   // Extract unique sports list dynamically from mock data
   const sportsCategories = ['All', ...new Set(mockMatches.map(m => m.sport))]
@@ -61,6 +72,20 @@ export default function App() {
       setActiveBets(activeBets.filter(b => b.id !== betId))
       setBankroll(prev => parseFloat((prev + bet.wager).toFixed(2)))
     }
+  }
+
+  const handleProfileChange = (e) => {
+    const { name, value } = e.target
+    setProfileData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+    setIsSaved(false)
+  }
+
+  const handleProfileSubmit = (e) => {
+    e.preventDefault()
+    setIsSaved(true)
   }
 
   return (
@@ -126,6 +151,101 @@ export default function App() {
                 <h3>How does the bankroll work?</h3>
                 <p>You start with a simulated bankroll of $1,000. Placing bets deducts your wager amount. Canceling a pending bet refunds the wager to your account balance.</p>
               </div>
+            </div>
+          )}
+
+          {activeTab === 'profile' && (
+            <div className="tab-view profile-section">
+              <h2>User Profile Settings</h2>
+              <p>Manage your account details and personal information.</p>
+
+              {isSaved && (
+                <div className="save-alert">
+                  ✅ Profile details updated successfully!
+                </div>
+              )}
+
+              <form className="profile-form" onSubmit={handleProfileSubmit}>
+                <div className="form-group">
+                  <label htmlFor="fullName">Full Name</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    value={profileData.fullName}
+                    onChange={handleProfileChange}
+                    placeholder="e.g. John Doe"
+                  />
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={profileData.email}
+                      onChange={handleProfileChange}
+                      placeholder="e.g. john@example.com"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={profileData.phone}
+                      onChange={handleProfileChange}
+                      placeholder="e.g. +1 (555) 000-0000"
+                    />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="address">Street Address</label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    value={profileData.address}
+                    onChange={handleProfileChange}
+                    placeholder="e.g. 123 Main Street, Apt 4B"
+                  />
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="city">City</label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      value={profileData.city}
+                      onChange={handleProfileChange}
+                      placeholder="e.g. Chicago"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="postalCode">Postal / ZIP Code</label>
+                    <input
+                      type="text"
+                      id="postalCode"
+                      name="postalCode"
+                      value={profileData.postalCode}
+                      onChange={handleProfileChange}
+                      placeholder="e.g. 60601"
+                    />
+                  </div>
+                </div>
+
+                <button type="submit" className="save-profile-btn">
+                  Save Changes
+                </button>
+              </form>
             </div>
           )}
         </main>

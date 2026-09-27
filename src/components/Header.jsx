@@ -35,7 +35,12 @@ export default function Header({ bankroll, activeTab, setActiveTab }) {
             <span className="bankroll-label">Balance</span>
             <span className="bankroll-amount">${bankroll.toFixed(2)}</span>
           </div>
-          <button className="profile-btn">👤 Profile</button>
+          <button 
+            className={`profile-btn ${activeTab === 'profile' ? 'active' : ''}`}
+            onClick={() => setActiveTab('profile')}
+          >
+            👤 Profile
+          </button>
         </div>
       </div>
     </header>
