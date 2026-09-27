@@ -53,6 +53,20 @@ moderntech-copilot/
 └── public/
 ```
 
+## Clone the Repository
+
+To get the project on your local machine, clone it from GitHub:
+
+```bash
+git clone https://github.com/frasse007/moderntech-copilot.git
+```
+
+Then navigate into the project folder:
+
+```bash
+cd moderntech-copilot
+```
+
 ## Installation
 
 Follow these steps to run the project locally.

@@ -978,3 +978,14 @@ CSS
   line-height: 1.5;
   font-size: 0.95rem;
 }
+
+### PROMPT
+In the README.md add instructions before the installation part about cloning the repository from GitHub to your local machine
+
+### RESPONSE
+✅ Added clone instructions
+I inserted a GitHub clone section before the installation steps in README.md, including:
+
+the git clone command
+the cd step into the project directory
+This makes the setup flow complete for someone starting from a fresh local machine.
